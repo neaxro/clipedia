@@ -1,0 +1,20 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table command {
+  id integer [primary key]
+  name string
+  examples string
+  links string
+  badges string
+  group_id integer
+}
+
+Table group {
+  id integer [primary key]
+  name string
+  icon_link string
+  description string
+}
+
+Ref: command.group_id > group.id // many-to-one
