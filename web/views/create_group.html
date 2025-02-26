@@ -13,6 +13,20 @@
             width: 100%;
             object-fit: scale-down;
         }
+
+        :root {
+            --bs-primary: #8d97b2;
+            --bs-secondary: #505e86;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary) !important;
+            border-color: var(--bs-primary) !important;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bs-secondary) !important;
+        }
     </style>
 </head>
 
@@ -31,21 +45,21 @@
             <!-- Group name -->
             <div class="mb-3">
                 <label for="groupNameInput" class="form-label">Group name</label>
-                <input name="group_name" type="text" class="form-control" id="groupNameInput" aria-describedby="groupNameHelp">
+                <input name="group_name" type="text" class="form-control" id="groupNameInput" aria-describedby="groupNameHelp" required>
                 <div id="groupNameHelp" class="form-text">Name of the new group.</div>
             </div>
 
             <!-- Group icon link -->
             <div class="mb-3">
                 <label for="groupIconLinkInput" class="form-label">Group icon link</label>
-                <input name="group_image_link" type="url" class="form-control" id="groupIconLinkInput" aria-describedby="groupIconLinkHelp">
+                <input name="group_image_link" type="url" class="form-control" id="groupIconLinkInput" aria-describedby="groupIconLinkHelp" required>
                 <div id="groupIconLinkHelp" class="form-text">It should start with http://... or https://...</div>
             </div>
 
             <!-- Group description -->
             <div class="mb-3">
                 <label for="groupDescriptionInput" class="form-label">Group description</label>
-                <textarea name="group_description" class="form-control" id="groupDescriptionInput" aria-describedby="groupDescriptionHelp" rows="5"></textarea>
+                <textarea name="group_description" class="form-control" id="groupDescriptionInput" aria-describedby="groupDescriptionHelp" rows="5" required></textarea>
                 <div id="groupDescriptionHelp" class="form-text">Small description about the group.</div>
             </div>
 
