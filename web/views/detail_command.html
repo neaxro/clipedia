@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIpedia</title>
+
+    <!-- Bootstrap & Icons -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
+
+    <!-- Prism.js -->
+    <link rel="stylesheet" href="/prismjs/themes/prism-coy.css">
+    <script src="/prismjs/prism.js"></script>
+    <script src="/prismjs/components/prism-bash.js"></script>
+
+    <style>
+        :root {
+            --bs-primary: #8d97b2;
+            --bs-secondary: #505e86;
+        }
+
+        .text-primary{
+            color: var(--bs-secondary) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary) !important;
+            border-color: var(--bs-primary) !important;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bs-secondary) !important;
+        }
+
+        .btn:hover {
+            background-color: var(--bs-primary) !important;
+        }
+
+        .btn-outline-primary {
+            border-color: var(--bs-secondary) !important;
+        }
+
+        a {
+            color: var(--bs-secondary) !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid container">
+            <a class="navbar-brand" href="/">
+                <img src="/static/logo.png" alt="" width="30%" height="30%" class="d-inline-block align-text-top">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+
+        <!-- Command Title -->
+        <div class="d-flex justify-content-between mb-4">
+            <h1 class="display-4 text-primary">apt</h1>
+
+            <!-- Edit Button -->
+            <a href="/command-edit/apt" class="btn btn-outline-primary align-self-center">
+                <i class="bi bi-pencil-square"></i> Edit
+            </a>
+        </div>
+
+
+        <!-- Command Description -->
+        <div class="mb-4">
+            <h3>Description</h3>
+            <p class="lead">Package management command for installing, updating, and removing software.</p>
+        </div>
+
+        <!-- Command Examples -->
+        <div class="mb-4">
+            <h3>Examples</h3>
+
+            <!-- Example 1 -->
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="terminal">
+                        <pre><code class="language-bash">apt-get update</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2 -->
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="terminal">
+                        <pre><code class="language-bash">apt-get install package-name</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Links Section -->
+        <div class="mb-4">
+            <h3>Useful Links</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="#">Official Documentation</a></li>
+                <li class="list-group-item"><a href="#">Apt Commands Reference</a></li>
+                <li class="list-group-item"><a href="#">Apt-get Usage Guide</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        function addExample() {
+            let exampleList = document.getElementById("exampleList");
+            let input = document.createElement("input");
+            input.type = "text";
+            input.name = "examples[]";
+            input.className = "form-control mb-2";
+            input.placeholder = "Example command";
+            exampleList.appendChild(input);
+        }
+
+        function addLink() {
+            let linkList = document.getElementById("linkList");
+            let input = document.createElement("input");
+            input.type = "url";
+            input.name = "links[]";
+            input.className = "form-control mb-2";
+            input.placeholder = "https://example.com";
+            linkList.appendChild(input);
+        }
+    </script>
+</body>
+
+</html>
