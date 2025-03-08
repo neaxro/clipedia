@@ -13,6 +13,25 @@ app.use('/prismjs', express.static(path.join(__dirname, 'node_modules/prismjs'))
 app.use('/static', express.static('static'));
 app.use(express.static('views'));
 
+// Login page
+app.get('/login', function(req, res, next){
+    res.sendFile(path.join(__dirname, 'views', 'login.html'));
+});
+
+// Login page
+// Process login data
+app.post('/login', function(req, res, next){
+    // TODO: handle login.
+    const username = req.body.username;
+    const password = req.body.password;
+
+    console.log("[LOGIN] username:", username);
+    console.log("[LOGIN] password:", password);
+    console.log();
+
+    res.redirect('/');
+});
+
 // Main page
 // List groups.
 app.get('/', function (req, res, next){
