@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: clipedia
+  namespace: app-clipedia
+spec:
+  rules:
+  - host: clipedia.nemes.live
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: clipedia-svc
+            port:
+              number: 3000

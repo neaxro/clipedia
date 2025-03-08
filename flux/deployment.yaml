@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clipedia
+  namespace: app-clipedia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clipedia
+  template:
+    metadata:
+      labels:
+        app: clipedia
+    spec:
+      containers:
+        - name: clipedia
+          image: axelnemes/clipedia # {"$imagepolicy": "flux-system:clipedia"}
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "30m"
+              memory: "65Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/worker
+                operator: In
+                values:
+                - worker
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - rpw01
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - rpw02
