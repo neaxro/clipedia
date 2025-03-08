@@ -1,3 +1,6 @@
+/**
+ * Lists all commands within a group.
+ */
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {

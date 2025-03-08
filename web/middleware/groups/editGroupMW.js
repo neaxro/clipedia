@@ -1,3 +1,7 @@
+/**
+ * Edits the group in database, after request if successfull user
+ * will be redirected to the main page.
+ */
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {

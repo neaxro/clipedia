@@ -1,5 +1,7 @@
 /**
  * If the user is authenticated, call next, otherwise redirect to /
+ * By defualt the GET related requests can be done by anyone, other requests
+ * granted if user is authenticated.
  */
 const requireOption = require('../requireOption');
 

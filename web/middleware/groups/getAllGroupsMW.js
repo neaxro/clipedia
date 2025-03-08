@@ -1,3 +1,6 @@
+/**
+ * Lists all groups from database.
+ */
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {

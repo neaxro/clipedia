@@ -1,3 +1,7 @@
+/**
+ * Edits the command in database, after request if successfull user
+ * will be redirected to the command's group.
+ */
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {

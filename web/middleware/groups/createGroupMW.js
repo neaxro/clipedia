@@ -1,3 +1,7 @@
+/**
+ * From the form data creates a new group.
+ * After creation is successfull user will be redirected to the main page.
+ */
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {

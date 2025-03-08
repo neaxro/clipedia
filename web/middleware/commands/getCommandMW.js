@@ -1,3 +1,6 @@
+/**
+ * Gets the command's details for detailed view.
+ */
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {
