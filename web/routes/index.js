@@ -18,6 +18,7 @@ const deleteCommandMW = require('../middleware/commands/deleteCommandMW');
 
 const GroupModel = require('../models/group');
 const CommandModel = require('../models/command');
+const editCommandMW = require('../middleware/commands/editCommandMW');
 
 module.exports = function (app) {
     const objRepo = {
@@ -84,7 +85,7 @@ module.exports = function (app) {
     app.use(
         '/command-edit',
         checkLoggedinMW(),
-        createCommandMW(),
+        editCommandMW(),
         renderMW(objRepo, 'edit_command')
     );
 
