@@ -55,15 +55,20 @@
             background-color: var(--bs-secondary) !important;
         }
 
-        .card-header{
+        .card-header {
             background-color: #505e86 !important;
         }
 
-        .card-footer{
+        .card-footer {
             background-color: #8d97b2 !important;
         }
 
-        a, .create-new-group {
+        a,
+        .create-new-group {
+            color: #fdfdfd;
+        }
+
+        .card-header .group-name {
             color: #fdfdfd;
         }
     </style>
@@ -75,29 +80,7 @@
     <div class="container">
         <div class="row g-4">
 
-            <% groups.forEach(function(group){ %>
-            <!-- Card template -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="/group/<%= group.name %>" class="card-link">
-                    <div class="card m-4" style="width: 18rem;">
-                        <div class="image-container position-relative">
-                            <img src="<%= group.icon_link %>"
-                                class="card-img-top grayscale-image p-2" alt="...">
-                            <div class="color-overlay"></div>
-                        </div>
-                        <div class="card-header d-flex justify-content-between">
-                            <span><%= group.name %></span>
-                            <a href="/group-edit/<%= group.name %>">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text"><%= group.description %></p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <% }); %>
+            <% if (session.belepve) { %>
             <!-- Add group -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="/group-create" class="card-link">
@@ -119,6 +102,41 @@
                     </div>
                 </a>
             </div>
+            <% } %>
+
+            <% groups.forEach(function(group){ %>
+            <!-- Card template -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <a href="/group/<%= group.name %>" class="card-link">
+                    <div class="card m-4" style="width: 18rem;">
+                        <div class="image-container position-relative">
+                            <img src="<%= group.icon_link %>" class="card-img-top grayscale-image p-2"
+                                alt="...">
+                            <div class="color-overlay"></div>
+                        </div>
+                        <div class="card-header d-flex justify-content-between">
+                            <span class="group-name">
+                                <%= group.name %>
+                            </span>
+                            <span>
+                                <% if (session.belepve) { %>
+                                    <a href="/group-edit/<%= group.name %>">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <% } else { %>
+                                        <span></span> <!-- Empty span to maintain alignment -->
+                                        <% } %>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= group.description %>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% }); %>
 
         </div>
     </div>

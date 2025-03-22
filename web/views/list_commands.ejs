@@ -57,7 +57,8 @@
     <div class="container">
         <div class="row g-4">
 
-            <!-- Example Card: Create command -->
+            <% if (session.belepve) { %>
+            <!-- Create command -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="/command-create" class="card-link text-decoration-none">
                     <div class="card m-4" style="width: 18rem;">
@@ -74,105 +75,33 @@
                     </div>
                 </a>
             </div>
+            <% } %>
 
-            <!-- Example Card: apt -->
+            <% commands.forEach(function(command){ %>
+            <!-- Card template -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="/command/apt" class="card-link text-decoration-none">
+                <a href="/command/<%= command.name %>" class="card-link text-decoration-none">
                     <div class="card m-4" style="width: 18rem;">
                         <div class="card-header text-center fw-bold">
-                            <h1>apt</h1>
+                            <h1><%= command.name %></h1>
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                                Package management command for installing, updating, and removing software.
+                                <%= command.description %>
                             </p>
                         </div>
                         <div class="card-footer">
-                            <span class="badge rounded-pill text-bg-primary">Package Management</span>
+                            <% command.badges.forEach(function(badge){ %>
+                            <span class="badge rounded-pill text-bg-primary"><%= badge %></span>
+                            <% }); %>
                         </div>
                     </div>
                 </a>
             </div>
-
-            <!-- Example Card: systemctl -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="/command/systemctl" class="card-link text-decoration-none">
-                    <div class="card m-4" style="width: 18rem;">
-                        <div class="card-header text-center fw-bold">
-                            <h1>systemctl</h1>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Command to control system services (start, stop, restart, check status).
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="badge rounded-pill text-bg-danger">System Service</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Example Card: journalctl -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="/command/journalctl" class="card-link text-decoration-none">
-                    <div class="card m-4" style="width: 18rem;">
-                        <div class="card-header text-center fw-bold">
-                            <h1>journalctl</h1>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                View and query system logs from the systemd journal.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="badge rounded-pill text-bg-warning">System Logs</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Example Card: chmod -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="/command/chmod" class="card-link text-decoration-none">
-                    <div class="card m-4" style="width: 18rem;">
-                        <div class="card-header text-center fw-bold">
-                            <h1>chmod</h1>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Change file permissions for users and groups.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="badge rounded-pill text-bg-secondary">File Permissions</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Example Card: grep -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="/command/grep" class="card-link text-decoration-none">
-                    <div class="card m-4" style="width: 18rem;">
-                        <div class="card-header text-center fw-bold">
-                            <h1>grep</h1>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Search for text patterns in files and outputs.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="badge rounded-pill text-bg-success">Search Utilities</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <% }); %>
 
         </div>
     </div>
-
 </body>
 
 </html>
