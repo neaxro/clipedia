@@ -4,6 +4,7 @@ const session = require('express-session');
 
 var app = express();
 
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));    // For form data (application/x-www-form-urlencoded)
 app.use(express.json());                            // For JSON data (if needed)
 

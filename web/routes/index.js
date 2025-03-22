@@ -1,5 +1,7 @@
 const path = require('path');
 
+const renderMW = require('../middleware/renderMW');
+
 const checkLoggedinMW = require('../middleware/auth/checkLoggedinMW');
 const checkPassMW = require('../middleware/auth/checkPassMW');
 const logoutMW = require('../middleware/auth/logoutMW');
@@ -14,14 +16,19 @@ const getCommandMW = require('../middleware/commands/getCommandMW');
 const createCommandMW = require('../middleware/commands/createCommandMW');
 const deleteCommandMW = require('../middleware/commands/deleteCommandMW');
 
+const GroupModel = require('../models/group');
+const CommandModel = require('../models/command');
+
 module.exports = function (app) {
+    const objRepo = {
+        GroupModel: GroupModel,
+        CommandModel: CommandModel
+    };
 
     app.use(
         '/login',
         checkPassMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'login.html'));
-        }
+        renderMW(objRepo, 'login')
     );
 
     app.use(
@@ -32,27 +39,21 @@ module.exports = function (app) {
     app.get(
         '/',
         getAllGroupsMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'list_groups.html'));
-        }
+        renderMW(objRepo, 'list_groups')
     );
 
     app.use(
         '/group-create',
         checkLoggedinMW(),
         createGroupMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'create_group.html'));
-        }
+        renderMW(objRepo, 'create_group')
     );
 
     app.use(
         '/group-edit/:groupname',
         checkLoggedinMW(),
         editGroupMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'edit_group.html'));
-        }
+        renderMW(objRepo, 'edit_group')
     );
 
     app.use(
@@ -64,35 +65,27 @@ module.exports = function (app) {
     app.use(
         '/group/:groupname',
         listAllCommandsMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'list_commands.html'));
-        }
+        renderMW(objRepo, 'list_commands')
     );
 
     app.use(
         '/command/:commandname',
         getCommandMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'detail_command.html'));
-        }
+        renderMW(objRepo, 'detail_command')
     );
 
     app.use(
         '/command-create',
         checkLoggedinMW(),
         createCommandMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'create_command.html'));
-        }
+        renderMW(objRepo, 'create_command')
     );
 
     app.use(
         '/command-edit',
         checkLoggedinMW(),
         createCommandMW(),
-        (req, res) => {
-            res.sendFile(path.join(__dirname, '..', 'views', 'edit_command.html'));
-        }
+        renderMW(objRepo, 'edit_command')
     );
 
     app.use(
