@@ -52,11 +52,22 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light navbar-expand-lg">
         <div class="container-fluid container">
             <a class="navbar-brand" href="/">
                 <img src="/static/logo.png" alt="" width="30%" height="30%" class="d-inline-block align-text-top">
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white px-3" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -65,7 +76,7 @@
 
             <!-- Example Card: Create command -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="/command" class="card-link text-decoration-none">
+                <a href="/command-create" class="card-link text-decoration-none">
                     <div class="card m-4" style="width: 18rem;">
                         <div class="card-header text-center fw-bold" style="background-color: #fdfdfd !important;">
                             <h3 style="color: #505e86 !important;">new command</h3>

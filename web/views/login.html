@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLIpedia</title>
+    <title>CLIpedia - Login</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
     <style>
@@ -19,6 +19,10 @@
             --bs-secondary: #505e86;
         }
 
+        .text-primary{
+            color: var(--bs-secondary) !important;
+        }
+
         .btn-primary {
             background-color: var(--bs-primary) !important;
             border-color: var(--bs-primary) !important;
@@ -26,6 +30,10 @@
 
         .btn-primary:hover {
             background-color: var(--bs-secondary) !important;
+        }
+
+        h3 {
+            color: #505e86;
         }
     </style>
 </head>
@@ -50,32 +58,21 @@
         </div>
     </nav>
 
-    <div class="container">
-
-        <form class="mt-4" method="post">
-            <!-- Group name -->
-            <div class="mb-3">
-                <label for="groupNameInput" class="form-label">Group name</label>
-                <input name="group_name" type="text" class="form-control" id="groupNameInput" aria-describedby="groupNameHelp" required>
-                <div id="groupNameHelp" class="form-text">Name of the new group.</div>
-            </div>
-
-            <!-- Group icon link -->
-            <div class="mb-3">
-                <label for="groupIconLinkInput" class="form-label">Group icon link</label>
-                <input name="group_image_link" type="url" class="form-control" id="groupIconLinkInput" aria-describedby="groupIconLinkHelp" required>
-                <div id="groupIconLinkHelp" class="form-text">It should start with http://... or https://...</div>
-            </div>
-
-            <!-- Group description -->
-            <div class="mb-3">
-                <label for="groupDescriptionInput" class="form-label">Group description</label>
-                <textarea name="group_description" class="form-control" id="groupDescriptionInput" aria-describedby="groupDescriptionHelp" rows="5" required></textarea>
-                <div id="groupDescriptionHelp" class="form-text">Small description about the group.</div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Create</button>
-        </form>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+        <div class="card p-4 shadow-sm" style="width: 350px;">
+            <h3 class="text-center text-primary">Login</h3>
+            <form method="POST" action="/login">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
     </div>
 </body>
 
