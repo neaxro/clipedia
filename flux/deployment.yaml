@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: clipedia
-          image: axelnemes/clipedia:2025-02-26-aa351029a20f8983a0f59f66fb0d68faa1c86216 # {"$imagepolicy": "flux-system:clipedia"}
+          image: axelnemes/clipedia:2025-03-22-258b6f575c9e2ea2baae4d7b48101bf4be2cc4a9 # {"$imagepolicy": "flux-system:clipedia"}
           imagePullPolicy: IfNotPresent
           resources:
             requests:
