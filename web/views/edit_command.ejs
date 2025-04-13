@@ -1,163 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLIpedia</title>
-
     <!-- Bootstrap & Icons -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
-
-    <style>
-        :root {
-            --bs-primary: #8d97b2;
-            --bs-secondary: #505e86;
-        }
-
-        .btn-primary {
-            background-color: var(--bs-primary) !important;
-            border-color: var(--bs-primary) !important;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--bs-secondary) !important;
-        }
-    </style>
-
 </head>
-
 <body>
-    <nav class="navbar navbar-light bg-light navbar-expand-lg">
-        <div class="container-fluid container">
-            <a class="navbar-brand" href="/">
-                <img src="/static/logo.png" alt="" width="30%" height="30%" class="d-inline-block align-text-top">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white px-3" href="/login">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <%- include('navbar') -%>
 
     <div class="container">
-
-        <form class="mt-4" method="post" action="/command-edit/apt">
+        <form class="mt-4" method="post" action="/command-edit/<%= command.name %>">
             <!-- Command Name -->
             <div class="mb-3">
                 <label for="commandNameInput" class="form-label">Command Name</label>
-                <input name="command_name" type="text" class="form-control" id="commandNameInput" value="Prefilled command name" required>
+                <input name="command_name" type="text" class="form-control" id="commandNameInput" value="<%= command.name %>" required>
             </div>
 
             <!-- Command Description -->
             <div class="mb-3">
                 <label for="commandDescriptionInput" class="form-label">Command Description</label>
-                <textarea name="command_description" class="form-control" id="commandDescriptionInput" rows="4"
-                    required>Prefilled command description.</textarea>
+                <textarea name="command_description" class="form-control" id="commandDescriptionInput" rows="4" required><%= command.description %></textarea>
             </div>
 
             <!-- Example Commands (List) -->
             <div class="mb-3">
                 <label for="commandExamplesInput" class="form-label">Examples</label>
-                <div id="exampleList"></div>
-                <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addExample()"><i
-                        class="bi bi-plus-square-fill"> Add
-                        Example</i></button>
+                <div id="exampleList">
+                    <!-- Loop through examples and create input fields -->
+                    <% command.examples.forEach(function(example, index) { %>
+                        <div class="input-group mb-2">
+                            <div class="input-group-text text-danger cursor-pointer" onclick="this.parentElement.remove();">
+                                <i class="bi bi-trash-fill"></i>
+                            </div>
+                            <input type="text" name="examples[]" class="form-control" value="<%= example %>" placeholder="Example command">
+                        </div>
+                    <% }); %>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addExample()">
+                    <i class="bi bi-plus-square-fill"> Add Example</i>
+                </button>
             </div>
-
 
             <!-- Links (List) -->
             <div class="mb-3">
                 <label for="commandLinksInput" class="form-label">Useful Links</label>
-                <div id="linkList"></div>
-                <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="addLink()"><i
-                        class="bi bi-plus-square-fill"> Add Link</i></button>
+                <div id="linkList">
+                    <!-- Loop through links and create input fields -->
+                    <% command.links.forEach(function(link, index) { %>
+                        <div class="input-group mb-2">
+                            <div class="input-group-text text-danger cursor-pointer" onclick="this.parentElement.remove();">
+                                <i class="bi bi-trash-fill"></i>
+                            </div>
+                            <input type="url" name="links[]" class="form-control" value="<%= link %>" placeholder="https://example.com">
+                        </div>
+                    <% }); %>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="addLink()">
+                    <i class="bi bi-plus-square-fill"> Add Link</i>
+                </button>
             </div>
-
-
 
             <div class="d-flex justify-content-between mb-4">
                 <button type="submit" class="btn btn-primary">Edit Command</button>
-
-                <a href="/command-delete/debian" class="btn btn-outline-danger align-self-center">
+                <a href="/command-delete/<%= command.name %>" class="btn btn-outline-danger align-self-center">
                     <i class="bi bi-trash-fill"></i> Delete
                 </a>
             </div>
         </form>
-
     </div>
 
     <script>
         function addExample() {
             let exampleList = document.getElementById("exampleList");
-
-            // Create the input-group wrapper
             let div = document.createElement("div");
             div.className = "input-group mb-2";
-
-            // Delete button inside input-group-text
             let deleteButton = document.createElement("div");
             deleteButton.className = "input-group-text text-danger cursor-pointer";
             deleteButton.innerHTML = '<i class="bi bi-trash-fill"></i>';
             deleteButton.style.cursor = "pointer";
             deleteButton.onclick = function () {
-                div.remove(); // Removes the specific item
+                div.remove();
             };
-
-            // Input field
             let input = document.createElement("input");
             input.type = "text";
             input.name = "examples[]";
             input.className = "form-control";
             input.placeholder = "Example command";
-
-            // Append elements to div
             div.appendChild(deleteButton);
             div.appendChild(input);
-
-            // Append to the list
             exampleList.appendChild(div);
         }
 
         function addLink() {
             let linkList = document.getElementById("linkList");
-
-            // Create the input-group wrapper
             let div = document.createElement("div");
             div.className = "input-group mb-2";
-
-            // Delete button inside input-group-text
             let deleteButton = document.createElement("div");
             deleteButton.className = "input-group-text text-danger cursor-pointer";
-            deleteButton.innerHTML = '<i class="bi bi-trash-fill"></i>'; // Bootstrap trash icon
+            deleteButton.innerHTML = '<i class="bi bi-trash-fill"></i>';
             deleteButton.style.cursor = "pointer";
             deleteButton.onclick = function () {
-                div.remove(); // Removes the specific link item
+                div.remove();
             };
-
-            // Input field for URL
             let input = document.createElement("input");
             input.type = "url";
             input.name = "links[]";
             input.className = "form-control";
             input.placeholder = "https://example.com";
-
-            // Append elements to div
             div.appendChild(deleteButton);
             div.appendChild(input);
-
-            // Append to the list
             linkList.appendChild(div);
         }
     </script>
 </body>
-
 </html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIpedia</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
+    <style>
+        .card-img-top {
+            height: 300px;
+            width: 100%;
+            object-fit: scale-down;
+        }
+
+        h1, h3{
+            color: #fdfdfd;
+        }
+
+        :root {
+            --bs-primary: #8d97b2;
+            --bs-secondary: #505e86;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary) !important;
+            border-color: var(--bs-primary) !important;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bs-secondary) !important;
+        }
+
+        .card-header{
+            background-color: #505e86 !important;
+        }
+
+        .card-footer{
+            background-color: #8d97b2 !important;
+        }
+
+        .text-bg-primary,
+        .text-bg-secondary,
+        .text-bg-success,
+        .text-bg-warning,
+        .text-bg-danger{
+            background-color: #fdfdfd !important;
+            color: #505e86 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('navbar') -%>
+
+    <div class="container">
+        <div class="row g-4">
+
+            <% if (session.belepve) { %>
+            <!-- Create command -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <a href="/command-create" class="card-link text-decoration-none">
+                    <div class="card m-4" style="width: 18rem;">
+                        <div class="card-header text-center fw-bold" style="background-color: #fdfdfd !important;">
+                            <h3 style="color: #505e86 !important;">new command</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Create new command by clicking here!
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% } %>
+
+            <% commands.forEach(function(command){ %>
+            <!-- Card template -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <a href="/command/<%= command.name %>" class="card-link text-decoration-none">
+                    <div class="card m-4" style="width: 18rem;">
+                        <div class="card-header text-center fw-bold">
+                            <h1><%= command.name %></h1>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= command.description %>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <% command.badges.forEach(function(badge){ %>
+                            <span class="badge rounded-pill text-bg-primary"><%= badge %></span>
+                            <% }); %>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% }); %>
+
+        </div>
+    </div>
+</body>
+
+</html>

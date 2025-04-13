@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIpedia</title>
+
+    <!-- Bootstrap & Icons -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
+
+    <!-- Prism.js -->
+    <link rel="stylesheet" href="/prismjs/themes/prism-coy.css">
+    <script src="/prismjs/prism.js"></script>
+    <script src="/prismjs/components/prism-bash.js"></script>
+    <script src="/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+
+
+    <style>
+        :root {
+            --bs-primary: #8d97b2;
+            --bs-secondary: #505e86;
+        }
+
+        .text-primary{
+            color: var(--bs-secondary) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary) !important;
+            border-color: var(--bs-primary) !important;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bs-secondary) !important;
+        }
+
+        .btn:hover {
+            background-color: var(--bs-primary) !important;
+        }
+
+        .btn-outline-primary {
+            border-color: var(--bs-secondary) !important;
+        }
+
+        a {
+            color: var(--bs-secondary) !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <%- include('navbar') -%>
+
+    <div class="container mt-5">
+
+        <!-- Command Title -->
+        <div class="d-flex justify-content-between mb-4">
+            <h1 class="display-4 text-primary"><%= command.name %></h1>
+
+            <% if (session.belepve) { %>
+            <!-- Edit Button -->
+            <a href="/command-edit/apt" class="btn btn-outline-primary align-self-center">
+                <i class="bi bi-pencil-square"></i> Edit
+            </a>
+            <% } %>
+        </div>
+
+
+        <!-- Command Description -->
+        <div class="mb-4">
+            <h3>Description</h3>
+            <p class="lead"><%= command.description %></p>
+        </div>
+
+        <!-- Command Examples -->
+        <div class="mb-4">
+            <h3>Examples</h3>
+
+            <% command.examples.forEach(function(example) { %>
+            <!-- Example -->
+            <pre><code class="language-bash"><%= example %></code></pre>
+            <% }); %>
+
+        </div>
+
+        <!-- Links Section -->
+        <div class="mb-4">
+            <h3>Useful Links</h3>
+            <ul class="list-group list-group-flush">
+                <% command.links.forEach(function(link) { %>
+                <li class="list-group-item"><a href="<%= link %>"><%= link %></a></li>
+                <% }); %>
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+</html>
