@@ -1,33 +1,23 @@
 /**
  * Gets the command's details for detailed view.
  */
+const mongoose = require('mongoose');
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {
-    return function(req, res, next) {
-        // TODO: Implement db call for fecthing command detail.
+    const CommandModel = requireOption(objectrepository, 'CommandModel');
 
+    return async function(req, res, next) {
         const commandName = req.params.commandname;
-        const dummy_command = {
-            id: 1,
-            name: "apt",
-            description: "Package management command for installing, updating, and removing software.",
-            examples: [
-                "sudo apt update",
-                "sudo apt install <package>",
-                "sudo apt remove <package>"
-            ],
-            links: [
-                "https://manpages.debian.org/buster/apt/apt.8.en.html"
-            ],
-            badges: ["Package Management"],
-            group_id: 1 // Debian
-        };
+        console.log("Fetching command where name is " + commandName);
 
-        res.locals.command = dummy_command;
+        try {
+            const command = await CommandModel.findOne({ name: commandName }).lean();
 
-        console.log("[DETAIL] Command name is " + commandName);
-
-        return next();
+            res.locals.command = command;
+            return next();
+        } catch (err) {
+            return next(err);
+        }
     };
 };

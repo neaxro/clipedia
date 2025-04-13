@@ -15,10 +15,10 @@ const listAllCommandsMW = require('../middleware/commands/listAllCommandsMW');
 const getCommandMW = require('../middleware/commands/getCommandMW');
 const createCommandMW = require('../middleware/commands/createCommandMW');
 const deleteCommandMW = require('../middleware/commands/deleteCommandMW');
+const editCommandMW = require('../middleware/commands/editCommandMW');
 
 const GroupModel = require('../models/group');
 const CommandModel = require('../models/command');
-const editCommandMW = require('../middleware/commands/editCommandMW');
 
 module.exports = function (app) {
     const objRepo = {
@@ -28,70 +28,70 @@ module.exports = function (app) {
 
     app.use(
         '/login',
-        checkPassMW(),
+        checkPassMW(objRepo),
         renderMW(objRepo, 'login')
     );
 
     app.use(
         '/logout',
-        logoutMW()
+        logoutMW(objRepo)
     );
 
     app.get(
         '/',
-        getAllGroupsMW(),
+        getAllGroupsMW(objRepo),
         renderMW(objRepo, 'list_groups')
     );
 
     app.use(
         '/group-create',
-        checkLoggedinMW(),
-        createGroupMW(),
+        checkLoggedinMW(objRepo),
+        createGroupMW(objRepo),
         renderMW(objRepo, 'create_group')
     );
 
     app.use(
         '/group-edit/:groupname',
-        checkLoggedinMW(),
-        editGroupMW(),
+        checkLoggedinMW(objRepo),
+        editGroupMW(objRepo),
         renderMW(objRepo, 'edit_group')
     );
 
     app.use(
         '/group-delete/:groupname',
-        checkLoggedinMW(),
-        deleteGroupMW()
+        checkLoggedinMW(objRepo),
+        deleteGroupMW(objRepo)
     );
 
     app.use(
         '/group/:groupname',
-        listAllCommandsMW(),
+        listAllCommandsMW(objRepo),
         renderMW(objRepo, 'list_commands')
     );
 
     app.use(
         '/command/:commandname',
-        getCommandMW(),
+        getCommandMW(objRepo),
         renderMW(objRepo, 'detail_command')
     );
 
     app.use(
         '/command-create',
-        checkLoggedinMW(),
-        createCommandMW(),
+        checkLoggedinMW(objRepo),
+        createCommandMW(objRepo),
         renderMW(objRepo, 'create_command')
     );
 
     app.use(
         '/command-edit',
-        checkLoggedinMW(),
-        editCommandMW(),
+        checkLoggedinMW(objRepo),
+        editCommandMW(objRepo),
         renderMW(objRepo, 'edit_command')
     );
 
     app.use(
         '/command-delete/:commandname',
-        checkLoggedinMW(),
-        deleteCommandMW()
+        checkLoggedinMW(objRepo),
+        deleteCommandMW(objRepo)
     );
 }
