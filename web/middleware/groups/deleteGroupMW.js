@@ -5,17 +5,24 @@
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {
-    return function(req, res, next) {
-        // TODO: Implement db call for delete current group.
+    const GroupModel = requireOption(objectrepository, 'GroupModel');
 
+    return async function(req, res, next) {
         const groupName = req.params.groupname;
 
         console.log("[DELETE] Group: " + groupName);
 
-        if(
-            groupName !== undefined
-        ){
-            return res.redirect('/');
+        try {
+            if(
+                groupName !== undefined
+            ){
+                res.redirect('/');
+            }
+
+            await GroupModel.deleteOne({ name: groupName });
+            console.log("[DELETE] Group deleted with name: " + commandName);
+        } catch (err) {
+            return next(err);
         }
 
         return next();
