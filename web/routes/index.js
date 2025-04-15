@@ -83,7 +83,7 @@ module.exports = function (app) {
     );
 
     app.use(
-        '/command-edit',
+        '/command-edit/:commandname',
         checkLoggedinMW(objRepo),
         editCommandMW(objRepo),
         renderMW(objRepo, 'edit_command')

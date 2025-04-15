@@ -5,47 +5,46 @@
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {
-    return function(req, res, next) {
-        const dummy_command = {
-            id: 6,
-            name: "test",
-            description: "Test command.",
-            examples: [
-                "grep 'pattern' file.txt",
-                "ps aux | grep apache",
-                "grep -i 'error' /var/log/syslog"
-            ],
-            links: [
-                "https://man7.org/linux/man-pages/man1/grep.1.html"
-            ],
-            badges: [
-                "Search Utilities",
-                "File Permissions",
-                "File Permissions",
-                "File Permissions",
-            ],
-            group_id: 1 // Debian (text processing)
-        };
+    const CommandModel = requireOption(objectrepository, 'CommandModel');
 
-        const commandName = req.body.command_name;
-        const commandDescription = req.body.command_description;
-        const commandExamples = req.body.examples || [];
-        const commandLinks = req.body.links || [];
-
+    return async function(req, res, next) {
+        const commandName = req.params.commandname;
         console.log("[EDIT] Command Name:", commandName);
-        console.log("[EDIT] Command Description:", commandDescription);
-        console.log("[EDIT] Command Examples:", commandExamples);
-        console.log("[EDIT] Command Links:", commandLinks);
 
-        // If form is submitted and values are present, update the command
-        if (commandName !== undefined && commandDescription !== undefined) {
-            // Simulate updating the command with new values (e.g. save to DB)
-            // Redirect to group after successful form submission
-            return res.redirect('/group/debian');
+        try {
+            const command = await CommandModel.findOne({ name: commandName });
+
+            if (!command) {
+                return next(new Error('Command not found: ' + commandName));
+            }
+
+            res.locals.command = command;
+
+            const commandNewName = req.body.command_name;
+            const commandDescription = req.body.command_description;
+            const commandExamples = req.body.examples || [];
+            const commandLinks = req.body.links || [];
+
+            console.log("[EDIT] Command Description:", commandDescription);
+            console.log("[EDIT] Command Examples:", commandExamples);
+            console.log("[EDIT] Command Links:", commandLinks);
+
+            // If form is submitted and values are present, update the command
+            if (commandName !== undefined && commandDescription !== undefined) {
+                command.name = commandNewName;
+                command.description = commandDescription;
+                command.examples = commandExamples;
+                command.links = commandLinks;
+
+                await command.save();
+                console.log("[EDIT] Command successfully updated");
+
+                return res.redirect('/');
+            }
+        } catch(err){
+            console.error("[EDIT] Error updating command:", err);
+            return next(err);
         }
-
-        // Pass the command and its attributes to the view
-        res.locals.command = dummy_command;
 
         return next();
     };
