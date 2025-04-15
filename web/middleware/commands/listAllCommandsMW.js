@@ -19,6 +19,7 @@ module.exports = function(objectrepository) {
             // Find commands that match the group_id
             const commands = await CommandModel.find({ group_id: group._id }).lean();
 
+            res.locals.groupName = groupName;
             res.locals.commands = commands;
             return next();
         } catch (err) {

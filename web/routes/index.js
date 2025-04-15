@@ -76,7 +76,7 @@ module.exports = function (app) {
     );
 
     app.use(
-        '/command-create',
+        '/:groupname/command-create',
         checkLoggedinMW(objRepo),
         createCommandMW(objRepo),
         renderMW(objRepo, 'create_command')
