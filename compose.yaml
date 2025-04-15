@@ -8,3 +8,15 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+
+  mongodb:
+    image: mongodb/mongodb-community-server
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: clipedia
+    volumes:
+      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+      - ./database:/data/import:ro
+    ports:
+      - 27017:27017

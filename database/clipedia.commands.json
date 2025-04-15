@@ -1,0 +1,422 @@
+[{
+  "_id": {
+    "$oid": "67fc1b04804603442d900392"
+  },
+  "name": "apt",
+  "description": "Package management command for installing, updating, and removing software.",
+  "examples": [
+    "sudo apt update",
+    "sudo apt install <package>",
+    "sudo apt remove <package>"
+  ],
+  "links": [
+    "https://manpages.debian.org/buster/apt/apt.8.en.html"
+  ],
+  "badges": [
+    "Package Management"
+  ],
+  "group_id": {
+    "$oid": "67fc1753804603442d900387"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1d3d804603442d900395"
+  },
+  "name": "systemctl",
+  "description": "Command to control system services (start, stop, restart, check status).",
+  "examples": [
+    "sudo systemctl start <service>",
+    "sudo systemctl stop <service>",
+    "sudo systemctl restart <service>",
+    "systemctl status <service>"
+  ],
+  "links": [
+    "https://man7.org/linux/man-pages/man1/systemctl.1.html"
+  ],
+  "badges": [
+    "System Service"
+  ],
+  "group_id": {
+    "$oid": "67fc1753804603442d900387"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1d49804603442d900396"
+  },
+  "name": "journalctl",
+  "description": "View and query system logs from the systemd journal.",
+  "examples": [
+    "journalctl -xe",
+    "journalctl -u <service>",
+    "journalctl --since '1 hour ago'"
+  ],
+  "links": [
+    "https://man7.org/linux/man-pages/man1/journalctl.1.html"
+  ],
+  "badges": [
+    "System Logs"
+  ],
+  "group_id": {
+    "$oid": "67fc1753804603442d900387"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1d55804603442d900397"
+  },
+  "name": "chmod",
+  "description": "Change file permissions for users and groups.",
+  "examples": [
+    "chmod 755 <file>",
+    "chmod u+x <script.sh>",
+    "chmod -R 644 <directory>"
+  ],
+  "links": [
+    "https://man7.org/linux/man-pages/man1/chmod.1.html"
+  ],
+  "badges": [
+    "File Permissions"
+  ],
+  "group_id": {
+    "$oid": "67fc1753804603442d900387"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1d60804603442d900398"
+  },
+  "name": "grep",
+  "description": "Search for text patterns in files and outputs.",
+  "examples": [
+    "grep 'pattern' file.txt",
+    "ps aux | grep apache",
+    "grep -i 'error' /var/log/syslog"
+  ],
+  "links": [
+    "https://man7.org/linux/man-pages/man1/grep.1.html"
+  ],
+  "badges": [
+    "Search Utilities"
+  ],
+  "group_id": {
+    "$oid": "67fc1753804603442d900387"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e15804603442d90039b"
+  },
+  "name": "kubectl",
+  "description": "Command-line tool for interacting with Kubernetes clusters.",
+  "examples": [
+    "kubectl get pods",
+    "kubectl describe pod <pod_name>",
+    "kubectl apply -f <config.yaml>"
+  ],
+  "links": [
+    "https://kubernetes.io/docs/reference/kubectl/overview/"
+  ],
+  "badges": [
+    "Kubernetes",
+    "Container Orchestration"
+  ],
+  "group_id": {
+    "$oid": "67fc19d9804603442d90038c"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e15804603442d90039c"
+  },
+  "name": "helm",
+  "description": "A package manager for Kubernetes.",
+  "examples": [
+    "helm install <chart_name>",
+    "helm upgrade <release_name> <chart_name>",
+    "helm list"
+  ],
+  "links": [
+    "https://helm.sh/docs/helm/helm/"
+  ],
+  "badges": [
+    "Kubernetes",
+    "Package Manager"
+  ],
+  "group_id": {
+    "$oid": "67fc19d9804603442d90038c"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e15804603442d90039d"
+  },
+  "name": "kubectl get",
+  "description": "Get resources in the Kubernetes cluster.",
+  "examples": [
+    "kubectl get pods",
+    "kubectl get deployments",
+    "kubectl get services"
+  ],
+  "links": [
+    "https://kubernetes.io/docs/reference/kubectl/cheatsheet/"
+  ],
+  "badges": [
+    "Kubernetes",
+    "Resource Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19d9804603442d90038c"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e15804603442d90039e"
+  },
+  "name": "kubectl apply",
+  "description": "Apply configuration changes to Kubernetes resources.",
+  "examples": [
+    "kubectl apply -f deployment.yaml",
+    "kubectl apply -f service.yaml"
+  ],
+  "links": [
+    "https://kubernetes.io/docs/reference/kubectl/cheatsheet/"
+  ],
+  "badges": [
+    "Kubernetes",
+    "Configuration"
+  ],
+  "group_id": {
+    "$oid": "67fc19d9804603442d90038c"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e15804603442d90039f"
+  },
+  "name": "kubectl logs",
+  "description": "Fetch logs from a container in a Kubernetes pod.",
+  "examples": [
+    "kubectl logs <pod_name>",
+    "kubectl logs -f <pod_name>"
+  ],
+  "links": [
+    "https://kubernetes.io/docs/reference/kubectl/cheatsheet/"
+  ],
+  "badges": [
+    "Kubernetes",
+    "Logs"
+  ],
+  "group_id": {
+    "$oid": "67fc19d9804603442d90038c"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e42804603442d9003a0"
+  },
+  "name": "docker run",
+  "description": "Run a command in a new Docker container.",
+  "examples": [
+    "docker run -it ubuntu bash",
+    "docker run -d -p 80:80 nginx"
+  ],
+  "links": [
+    "https://docs.docker.com/engine/reference/commandline/run/"
+  ],
+  "badges": [
+    "Docker",
+    "Container Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19e5804603442d90038d"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e42804603442d9003a1"
+  },
+  "name": "docker ps",
+  "description": "List running Docker containers.",
+  "examples": [
+    "docker ps",
+    "docker ps -a"
+  ],
+  "links": [
+    "https://docs.docker.com/engine/reference/commandline/ps/"
+  ],
+  "badges": [
+    "Docker",
+    "Container Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19e5804603442d90038d"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e42804603442d9003a2"
+  },
+  "name": "docker build",
+  "description": "Build an image from a Dockerfile.",
+  "examples": [
+    "docker build -t my_image .",
+    "docker build -t my_image:latest ."
+  ],
+  "links": [
+    "https://docs.docker.com/engine/reference/commandline/build/"
+  ],
+  "badges": [
+    "Docker",
+    "Image Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19e5804603442d90038d"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e42804603442d9003a3"
+  },
+  "name": "docker pull",
+  "description": "Pull an image from a registry.",
+  "examples": [
+    "docker pull ubuntu",
+    "docker pull nginx:latest"
+  ],
+  "links": [
+    "https://docs.docker.com/engine/reference/commandline/pull/"
+  ],
+  "badges": [
+    "Docker",
+    "Image Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19e5804603442d90038d"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e42804603442d9003a4"
+  },
+  "name": "docker exec",
+  "description": "Run a command in a running Docker container.",
+  "examples": [
+    "docker exec -it <container_name> bash",
+    "docker exec <container_name> ls /"
+  ],
+  "links": [
+    "https://docs.docker.com/engine/reference/commandline/exec/"
+  ],
+  "badges": [
+    "Docker",
+    "Container Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19e5804603442d90038d"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e4f804603442d9003a5"
+  },
+  "name": "helm install",
+  "description": "Install a Helm chart into a Kubernetes cluster.",
+  "examples": [
+    "helm install <release_name> <chart_name>",
+    "helm install my-release ./my-chart"
+  ],
+  "links": [
+    "https://helm.sh/docs/helm/helm_install/"
+  ],
+  "badges": [
+    "Helm",
+    "Kubernetes Package Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19f1804603442d90038e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e4f804603442d9003a6"
+  },
+  "name": "helm upgrade",
+  "description": "Upgrade a release in Kubernetes using a new chart or version.",
+  "examples": [
+    "helm upgrade <release_name> <chart_name>",
+    "helm upgrade my-release ./my-chart"
+  ],
+  "links": [
+    "https://helm.sh/docs/helm/helm_upgrade/"
+  ],
+  "badges": [
+    "Helm",
+    "Kubernetes Package Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19f1804603442d90038e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e4f804603442d9003a7"
+  },
+  "name": "helm list",
+  "description": "List all releases in Kubernetes.",
+  "examples": [
+    "helm list",
+    "helm list --all"
+  ],
+  "links": [
+    "https://helm.sh/docs/helm/helm_list/"
+  ],
+  "badges": [
+    "Helm",
+    "Release Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19f1804603442d90038e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e4f804603442d9003a8"
+  },
+  "name": "helm rollback",
+  "description": "Rollback a release to a previous version.",
+  "examples": [
+    "helm rollback <release_name> <revision_number>"
+  ],
+  "links": [
+    "https://helm.sh/docs/helm/helm_rollback/"
+  ],
+  "badges": [
+    "Helm",
+    "Release Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19f1804603442d90038e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67fc1e4f804603442d9003a9"
+  },
+  "name": "helm repo add",
+  "description": "Add a Helm chart repository.",
+  "examples": [
+    "helm repo add <repo_name> <repo_url>"
+  ],
+  "links": [
+    "https://helm.sh/docs/helm/helm_repo_add/"
+  ],
+  "badges": [
+    "Helm",
+    "Repository Management"
+  ],
+  "group_id": {
+    "$oid": "67fc19f1804603442d90038e"
+  }
+}]

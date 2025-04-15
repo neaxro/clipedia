@@ -5,9 +5,9 @@
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {
-    return function(req, res, next) {
-        // TODO: Implement db call for creating new group.
+    const GroupModel = requireOption(objectrepository, 'GroupModel');
 
+    return async function(req, res, next) {
         const groupName = req.body.group_name;
         const groupImage = req.body.group_image_link;
         const groupDescription = req.body.group_description;
@@ -21,7 +21,21 @@ module.exports = function(objectrepository) {
             && groupImage !== undefined
             && groupDescription !== undefined
         ){
-            return res.redirect('/');
+            try {
+                const newGroup = GroupModel({
+                    name: groupName,
+                    icon_link: groupImage,
+                    description: groupDescription
+                });
+
+                await newGroup.save();
+                console.log("[CREATE] Group successfully created");
+
+                return res.redirect('/');
+            } catch (err) {
+                console.error("[CREATE] Error creating group:", err);
+                return next(err);
+            }
         }
 
         return next();

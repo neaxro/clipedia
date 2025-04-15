@@ -5,17 +5,22 @@
 const requireOption = require('../requireOption');
 
 module.exports = function(objectrepository) {
-    return function(req, res, next) {
-        // TODO: Implement db call for delete current command.
+    const CommandModel = requireOption(objectrepository, 'CommandModel');
 
+    return async function(req, res, next) {
         const commandName = req.params.commandname;
 
-        console.log("[DELETE] Command: " + commandName);
+        try {
+            if(
+                commandName !== undefined
+            ){
+                res.redirect('/');
+            }
 
-        if(
-            commandName !== undefined
-        ){
-            res.redirect('/group/debian');
+            await CommandModel.deleteOne({ name: commandName });
+            console.log("[DELETE] Command deleted with name: " + commandName);
+        } catch (err) {
+            return next(err);
         }
 
         return next();
