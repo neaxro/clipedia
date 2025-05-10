@@ -19,6 +19,14 @@ Website that helps learn new, useful commands.
 - list_commands.html: List that shows all commands within a group. By clicking on an element it routes to the command detail view. New command creation button.
 - list_groups.html: Lists groups, by clicking on a group it will show all commands located in that group. New group cretion button.
 
+# Tests
+
+To run tests use the following command:
+
+```console
+npx mocha web/tests/*.test.js
+```
+
 # Routing documentation
 
 middleware/auth/
